@@ -26,8 +26,11 @@ jobs:
       - name: Get package.json
         id: get_package_json
         run: |
-          content=$(cat package.json)
-          echo "package_json=$content" >> $GITHUB_OUTPUT
+          {
+            echo 'package_json<<"""'
+            echo $(cat package.json)
+            echo '"""'
+          } >> $GITHUB_OUTPUT
 
       - name: Get needed Data
         id: job_data
