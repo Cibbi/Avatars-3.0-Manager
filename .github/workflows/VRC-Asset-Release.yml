@@ -42,10 +42,6 @@ jobs:
           minor_version=$(echo $version | cut -d '.' -f 2)
           echo "major_version=$major_version" >> $GITHUB_OUTPUT
           echo "minor_version=$minor_version" >> $GITHUB_OUTPUT
-          name=$(echo "${{ fromJson(steps.get_package_json.outputs.package_json).name }}")
-          display_name=$(echo "${{ fromJson(steps.get_package_json.outputs.package_json).displayName }}")
-          echo "package_name=$name" >> $GITHUB_OUTPUT
-          echo "package_display_name=$display_name" >> $GITHUB_OUTPUT
 
 
       - name: Create Packages
