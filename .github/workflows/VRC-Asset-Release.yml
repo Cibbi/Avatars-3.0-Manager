@@ -27,9 +27,6 @@ jobs:
         id: get_package_json
         run: |
           content=$(cat package.json)
-          content="${content//'%'/'%25'}"
-          content="${content//$'\n'/'%0A'}"
-          content="${content//$'\r'/'%0D'}"
           echo "package_json=$content" >> $GITHUB_OUTPUT
 
       - name: Get needed Data
