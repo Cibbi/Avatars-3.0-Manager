@@ -30,20 +30,20 @@ jobs:
           content="${content//'%'/'%25'}"
           content="${content//$'\n'/'%0A'}"
           content="${content//$'\r'/'%0D'}"
-          echo "::set-output name=package_json::$content"
+          echo "package_json=$(echo "$content")" >> $GITHUB_OUTPUT
 
       - name: Get needed Data
         id: job_data
         run: |
-          version=$(echo "${{ github.ref }}" | sed 's/refs\/heads\/release\///')
+          version=$(echo "${{ github.ref_name }}")
           version=$(echo $version | tr '[:upper:]' '[:lower:]')
-          echo "::set-output name=version::$version"
+          echo "version=$version" >> $GITHUB_OUTPUT
           major_version=$(echo $version | cut -d '.' -f 1)
           minor_version=$(echo $version | cut -d '.' -f 2)
-          echo "::set-output name=major_version::$major_version"
-          echo "::set-output name=minor_version::$minor_version"
-          echo "::set-output name=package_name::$(echo ${{ fromJson(steps.get_package_json.outputs.package_json).name }})"
-          echo "::set-output name=package_display_name::$(echo ${{ fromJson(steps.get_package_json.outputs.package_json).displayName }})"
+          echo "major_version=$major_version" >> $GITHUB_OUTPUT
+          echo "minor_version=$minor_version" >> $GITHUB_OUTPUT
+          echo "package_name=$(echo ${{ fromJson(steps.get_package_json.outputs.package_json).name }})" >> $GITHUB_OUTPUT
+          echo "package_display_name=$(echo ${{ fromJson(steps.get_package_json.outputs.package_json).displayName }})" >> $GITHUB_OUTPUT
 
 
       - name: Create Packages
