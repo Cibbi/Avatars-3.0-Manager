@@ -60,7 +60,7 @@ jobs:
           
       - name: Output GITHUB_OUTPUT
         run: |
-          echo $(cat $GITHUB_OUTPUT)
+            cat $GITHUB_OUTPUT
 
       - name: Create Release
         uses: softprops/action-gh-release@v1
