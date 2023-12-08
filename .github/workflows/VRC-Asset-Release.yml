@@ -78,5 +78,5 @@ jobs:
 
       - name: Send package info to a server
         run: |
-          curl -X POST -H "Content-Type: application/json" -H "Vrl_Api_Key: ${{ secrets.LISTINGS_API_KEY }}" --data @${{ steps.create_packages.outputs.serverPackageJsonPath }} ${{ env.UPLOAD_ENDPOINT }} || exit 0
+          curl -X POST -H "Content-Type: application/json" -H "Vrl-Api-Key: ${{ secrets.LISTINGS_API_KEY }}" --data @${{ steps.create_packages.outputs.serverPackageJsonPath }} ${{ env.UPLOAD_ENDPOINT }} || exit 0
         shell: bash
